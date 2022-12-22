@@ -2,9 +2,9 @@ import { CustomError } from './custom-error';
 
 export class DatabaseConnectionError extends CustomError {
     statusCode = 500;
-    reason = 'Error Connecting to Database'
+    reason = 'Error Connecting to Database';
     constructor(){
-        super('Database Connection Error');
+        super();
 
         // As we are extending built in class
         Object.setPrototypeOf(this, DatabaseConnectionError.prototype)
