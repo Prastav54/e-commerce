@@ -5,5 +5,5 @@ export const errorHHandler = (err: Error, req: Request, res: Response, next: Nex
     if (err instanceof CustomError){
         res.status(err.statusCode).send({errors: err.serializeErrors()})
     }
-    res.status(400).send({message: err.message})
+    res.status(500).send({message: err.message})
 }

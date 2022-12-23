@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: prastav/auth:latest
+          image: prastav/auth
 ---
 apiVersion: v1
 kind: Service
