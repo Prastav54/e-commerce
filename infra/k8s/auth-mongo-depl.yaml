@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth-mongo
-          image: mongo
+          image: mongo:latest
 ---
 apiVersion: v1
 kind: Service
