@@ -7,7 +7,7 @@ interface UserAtrs {
 }
 
 interface UserModel extends mongoose.Model<any> {
-    addUser(attrs: UserAtrs): UserDoc
+    build(attrs: UserAtrs): UserDoc
 }
 
 interface UserDoc extends mongoose.Document {
@@ -24,6 +24,16 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     }
+}, {
+    toJSON: {
+        transform(doc, ret){
+            ret.id = ret._id;
+            delete ret._id;
+            delete ret.password;
+            delete ret.__v;
+
+        }
+    }
 });
 
 userSchema.pre('save',async function(done){
@@ -34,7 +44,7 @@ userSchema.pre('save',async function(done){
     done()
 })
 
-userSchema.statics.addUser  = (attrs: UserAtrs) => {
+userSchema.statics.build  = (attrs: UserAtrs) => {
     return new User(attrs)
 } 
 
